@@ -10,7 +10,7 @@
 3# Show .                                                       
 4# Delete .                                                         
                                                       
-1->  Add members , coaches or Machine .                                                            
+1->  Add members , coaches or Machines .                                                            
 2->  modify The Data of all above .                                                                   
 3->  Show all The above .
 4->  Delete all the above .

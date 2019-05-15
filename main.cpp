@@ -4,6 +4,7 @@
 #include "Functions_Implementation.h"
 using namespace std   ;
 int Select  , Out =1  ;
+
 int  main ()
 {
     Functions F ;
@@ -17,24 +18,33 @@ int  main ()
     cout << "5)Search.\n";
     cout << "6)Out.\n";
     cin >> Select ;
+    while (!ValidInput(Select) || (Select < 1 || Select > 6) )
+    {	
+	cout << "1)Insert.\n";
+    cout << "2)Show.\n";
+    cout << "3)Delete.\n";
+    cout << "4)Update.\n";
+    cout << "5)Search.\n";
+    cout << "6)Out.\n";
+    cin >> Select ;  
+	}
     /// Validation To Make Input between 1 : 6
-    system("cls");
+    system("clear");
     switch (Select)
     {
     case 1 :
         F.Insert();
-        system("cls");
+        system("clear");
         break ;
     case 2 :
         F.Display();
         break ;
     case 3 :
         F.Delete();
-        system("cls");
         break ;
     case 4 :
         F.Update();
-        system("cls");
+        system("clear");
         break ;
     case 5 :
         F.Search();
@@ -45,5 +55,7 @@ int  main ()
 
     }
     }while (Out!=0);
-            return 0;
-        }
+  
+  
+  return 0 ;
+  }

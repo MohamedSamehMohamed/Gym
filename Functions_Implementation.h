@@ -9,11 +9,22 @@
 
 
 using namespace std ;
+bool ValidInput (int select )
+{
+	if (cin.fail())
+    {
+		system("clear"); 
+		cin.clear(); 
+		cin.ignore(1000,'\n'); 
+		cout <<"Wrong Input\n"; 
+		return false ; 
+	}
+	return true ;
+}
 
-
- /// Insert Functions
- void Functions::Insert()
- {
+/// Insert Functions
+void Functions::Insert()
+{
 int Select ;
 cout << "1)Member.\n";
 cout << "2)Coach.\n";
@@ -21,8 +32,16 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "1)Member.\n";
+cout << "2)Coach.\n";
+cout << "3)Machine.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
 
-system("cls");
+system("clear");
 switch (Select)
 {
 case 1 :
@@ -119,8 +138,15 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
-
-system("cls");
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "1)Member.\n";
+cout << "2)Coach.\n";
+cout << "3)Machine.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
+system("clear");
 switch (Select)
 {
 case 1 :
@@ -146,10 +172,15 @@ void Functions::Delete_Member()
 {
     bool Exisit =0  ;
     int Id ;
-//    Display_Mamber();
+    Display_Mamber();
     cout << "Enter Id You Want To Delete \n";
     cin >> Id ;
-/// Validation
+	/// Validation
+    while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream M ;
     string T ;
     M.open("Data/Members.txt", ios::in );
@@ -170,6 +201,7 @@ void Functions::Delete_Member()
     M.close() ;
     if (!Exisit)
     {
+		system("clear");
         cout << "Not Exist \n";
         return ;
     }
@@ -204,6 +236,7 @@ void Functions::Delete_Member()
     M1.close();
     remove("Data/Members.txt");
     rename("Data/Members1.txt", "Data/Members.txt");
+    system("clear"); 
     cout << "Done\n";
 
 
@@ -219,10 +252,16 @@ void Functions::Delete_Coach()
 
     bool Exisit =0  ;
     int Id ;
-//    Display_Coach();
+    Display_Coaches();
     cout << "Enter Id You Want To Delete \n";
     cin >> Id ;
-/// Validation
+	/// Validation
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
+	
     fstream C ;
     string T ;
     C.open("Data/Coaches.txt", ios::in );
@@ -288,10 +327,17 @@ void Functions::Delete_Machine()
 {
     bool Exisit =0  ;
     int Id ;
-//    Display_Machine();
+    Display_Machines();
     cout << "Enter Id You Want To Delete \n";
     cin >> Id ;
-/// Validation
+    system("clear");
+	/// Validation
+	system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream H ;
     string T ;
     H.open("Data/Machines.txt", ios::in );
@@ -312,7 +358,7 @@ void Functions::Delete_Machine()
     H.close() ;
     if (!Exisit)
     {
-        cout << "Not Exist \n";
+		cout << "Not Exist \n";
         return ;
     }
     fstream M1 ;
@@ -362,15 +408,22 @@ void Functions::Delete_Machine()
 /// Update Functions
 void Functions::Update()
 {
-    int Select ;
+int Select ;
 cout << "1)Member.\n";
 cout << "2)Coach.\n";
 cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
-
-system("cls");
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "1)Member.\n";
+cout << "2)Coach.\n";
+cout << "3)Machine.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
+system("clear");
 switch (Select)
 {
 case 1 :
@@ -393,9 +446,15 @@ void Functions::Update_Member ()
 {
 
     int Id ;
-//  Display_Mamber();
+    Display_Mamber();
     cout << "Enter Id To Update \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream M ;
     string T ;
     bool Exisit = 0 ;
@@ -477,9 +536,15 @@ void Functions::Update_Coach()
 {
 
     int Id ;
-//  Display_Mamber();
+    Display_Coaches(); 
     cout << "Enter Id To Update \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream M ;
     string T ;
     bool Exisit = 0 ;
@@ -559,10 +624,16 @@ void Functions::Update_Coach()
 ///# Update Machine START
 void  Functions::Update_Machine()
 {
-       int Id ;
-//  Display_Mamber();
+    int Id ;
+	Display_Machines(); 
     cout << "Enter Id To Update \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream M ;
     string T ;
     bool Exisit = 0 ;
@@ -650,8 +721,15 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
-
-system("cls");
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "1)Member.\n";
+cout << "2)Coach.\n";
+cout << "3)Machine.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
+system("clear");
 switch (Select)
 {
 case 1 :
@@ -669,7 +747,7 @@ case 4 :
 }
 void Functions::Search_Members()
 {
-system("cls");
+system("clear");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -678,6 +756,16 @@ cout << "3)Subscription. \n";
 cout << "4)Age.\n";
 cout << "5)Back.\n";
 cin >> Select ;
+while (!ValidInput(Select) || (Select < 1 || Select > 5) )
+{	
+cout << "Search By : \n";
+cout << "1)Id. \n";
+cout << "2)Program. \n";
+cout << "3)Subscription. \n";
+cout << "4)Age.\n";
+cout << "5)Back.\n";
+cin >> Select ;  
+}
 /// Validation
 switch (Select)
 {
@@ -701,7 +789,7 @@ case 5 :
 }
 void Functions::Search_Coaches()
 {
-system("cls");
+system("clear");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -710,6 +798,15 @@ cout << "3)Age.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "Search By : \n";
+cout << "1)Id. \n";
+cout << "2)Program. \n";
+cout << "3)Age.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
 switch (Select)
 {
 case 1 :
@@ -729,7 +826,7 @@ case 4 :
 }
 void Functions::Search_Machines()
 {
-system("cls");
+system("clear");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -737,6 +834,14 @@ cout << "2)Program. \n";
 cout << "3)Back.\n";
 cin >> Select ;
 /// Validation
+while (!ValidInput(Select) || (Select < 1 || Select > 3) )
+{	
+cout << "Search By : \n";
+cout << "1)Id. \n";
+cout << "2)Program. \n";
+cout << "3)Back.\n";
+cin >> Select ;  
+}
 switch (Select)
 {
 case 1 :
@@ -759,6 +864,12 @@ void Functions::Search_Member_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream M ;
     string T ;
     bool Exisit = 0 ;
@@ -1036,6 +1147,12 @@ void Functions::Search_Coach_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream C ;
     string T ;
     bool Exisit = 0 ;
@@ -1223,6 +1340,12 @@ void Functions::Search_Machine_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
+    system("clear"); 
+	while (!ValidInput(Id) || Id <= 0)
+    {
+		cout << "Enter Id You Want To Delete \n";
+		cin >> Id ;
+	}
     fstream H ;
     string T ;
     bool Exisit = 0 ;
@@ -1236,14 +1359,11 @@ void Functions::Search_Machine_Id ()
         {
             Exisit = 1 ;
             cout << "Found \n";
-
             cout << T << setw(3) ;
             getline(H,T,'#');
             cout << T << setw(3) ;
-
             getline(H,T,'#');
             cout << T << setw(3) ;
-
             getline(H,T,'\n');
             cout << T << setw(3) ;
             cout << "\n";
@@ -1291,28 +1411,13 @@ void Functions::Search_Machine_Program ()
         if ( ProgramS == T3)
         {
             Exisit = 1 ;
-
-
             cout << T1 << setw(3) ;
-
             cout << T2 << setw(3) ;
-
-
             cout << T3 << setw(3) ;
-
-
             cout << T4 << setw(3) ;
-
-
             cout << "\n";
-
-
-
         }
-
-
     }
-
     H.close() ;
     if (!Exisit)
     {
@@ -1328,15 +1433,22 @@ void Functions::Search_Machine_Program ()
 /// Display Functions
 void Functions::Display()
 {
-      int Select ;
+int Select ;
 cout << "1)Member.\n";
 cout << "2)Coach.\n";
 cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;
 /// Validation
-
-system("cls");
+while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+{	
+cout << "1)Member.\n";
+cout << "2)Coach.\n";
+cout << "3)Machine.\n";
+cout << "4)Back.\n";
+cin >> Select ;  
+}
+system("clear");
 switch (Select)
 {
 case 1 :
@@ -1360,9 +1472,9 @@ case 4 :
 void Functions::Display_Mamber ()
 {
 
+	bool Exist = 0 ; 
     fstream M ;
     string T ;
-    bool Exisit = 0 ;
     M.open("Data/Members.txt", ios::in );
     if (!M)
     {
@@ -1370,43 +1482,38 @@ void Functions::Display_Mamber ()
         cout << "Not Exist \n";
         return ;
     }
-    cout << "Id" << "  " << "Name" << "\t" << "Age" << "  " << "Hight" << "  " << "Wight" << "  "<<"Program"<< "       "<<"Subscription"<< "    "<<"Phone\n";
-    while (1)
+    
+    while (!M.eof())
     {
-        getline(M,T,'#');
-        if (M.eof())
-            break ;
-            cout << T ; SPACE(T.size(),3) ;
+			getline(M,T,'#');
+			if (M.eof())break;
+			if (!Exist)
+			{
+				Exist = 1;
+				cout << "Id" << "  " << "Name" << "\t" << "Age" << "  " << "Hight" << "  " << "Wight" << "  "<<"Program"<< "       "<<"Subscription"<< "    "<<"Phone\n";
+			}
+			cout << T ; SPACE(T.size(),3) ;
             getline(M,T,'#');
             cout << T ; SPACE(T.size(),13) ;
-
             getline(M,T,'#');
             cout << T ; SPACE(T.size(),5) ;
-
             getline(M,T,'#');
             cout << T ; SPACE(T.size(),7) ;
-
             getline(M,T,'#');
             cout << T ; SPACE(T.size(),7) ;
-
-
             getline(M,T,'#');
             cout << T ; SPACE(T.size(),15);
-
-
             getline(M,T,'#');
             cout << T  ;SPACE(T.size(),15) ;
-
             getline(M,T,'\n');
             cout << T  ;
             cout << "\n";
-
-
     }
 
     M.close() ;
-
-
+	
+	if (!Exist)
+	cout << "File Is Empty \n"; 
 }
 ///# Display Member END
 
@@ -1418,7 +1525,6 @@ void Functions::Display_Coaches ()
 
     fstream T ;
     string M ;
-    bool Exisit = 0 ;
     T.open("Data/Coaches.txt", ios::in );
     if (!T)
     {
@@ -1427,39 +1533,25 @@ void Functions::Display_Coaches ()
         return ;
     }
     cout << "Id" << "  " << "Name" << "\t" << "Age" << "        " << "Hight" << "     " << "Wight" << "     "<<"Program"<< "  "<< " "<<"Phone\n";
-    while (1)
+    while (!T.eof())
     {
-        getline(T,M,'#');
-        if (T.eof())
-            break ;
+			getline(T,M,'#');
             cout << M ; SPACE(M.size(),3) ;
             getline(T,M,'#');
             cout << M ; SPACE(M.size(),14) ;
-
             getline(T,M,'#');
             cout << M ; SPACE(M.size(),10) ;
-
             getline(T,M,'#');
             cout << M ; SPACE(M.size(),10) ;
-
             getline(T,M,'#');
             cout << M ; SPACE(M.size(),10) ;
-
-
             getline(T,M,'#');
             cout << M ; SPACE(M.size(),10);
-
-
-
             getline(T,M,'\n');
             cout << M  ;
             cout << "\n";
-
-
      }
-
     T.close() ;
-
 
 }
 
@@ -1473,7 +1565,6 @@ void Functions::Display_Machines ()
 
     fstream H ;
     string Tool ;
-    bool Exisit = 0 ;
     H.open("Data/Machines.txt", ios::in );
     if (!H)
     {
@@ -1482,24 +1573,17 @@ void Functions::Display_Machines ()
         return ;
     }
     cout << "Id" << "  " << "Name" << "\t" << "program" << "  " <<"Number \n";
-    while (1)
+    while (!H.eof())
     {
-        getline(H,Tool,'#');
-        if (H.eof())
-            break ;
+			getline(H,Tool,'#');
             cout << Tool ; SPACE(Tool.size(),4) ;
             getline(H,Tool,'#');
             cout << Tool ; SPACE(Tool.size(),12) ;
-
             getline(H,Tool,'#');
             cout << Tool ; SPACE(Tool.size(),10) ;
-
             getline(H,Tool,'\n');
             cout << Tool ; SPACE(Tool.size(),10) ;
-
             cout << "\n";
-
-
      }
 
     H.close() ;

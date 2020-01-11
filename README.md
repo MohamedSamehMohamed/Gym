@@ -1,9 +1,9 @@
 # Gym
-#this  is a Simple Console  Project for Gym's Admin To mangement the Gym ,
+# this  is a Simple Console  Project for Gym's Admin To mangement the Gym ,
 
-#This Was My First Project In My University of Computer Scince Using OOP  .
+# This Was My First Project In My University of Computer Scince Using OOP  .
 
-#Me and My Friends made The Project . 
+# Me and My Friends made The Project . 
 
 1# Add .                                                                                                       
 2# Modify .                                                                    

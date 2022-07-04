@@ -6,14 +6,12 @@
 #include <iostream>
 #include <string>
 #include "MembersAndCoaches.h"
-
-
 using namespace std ;
 bool ValidInput (int select )
 {
 	if (cin.fail())
-    {
-		system("clear"); 
+	{
+		system ("CLS"); 
 		cin.clear(); 
 		cin.ignore(1000,'\n'); 
 		cout <<"Wrong Input\n"; 
@@ -25,65 +23,57 @@ bool ValidInput (int select )
 /// Insert Functions
 void Functions::Insert()
 {
-int Select ;
-cout << "1)Member.\n";
-cout << "2)Coach.\n";
-cout << "3)Machine.\n";
-cout << "4)Back.\n";
-cin >> Select ;
-/// Validation
-while (!ValidInput(Select) || (Select < 1 || Select > 4) )
-{	
-cout << "1)Member.\n";
-cout << "2)Coach.\n";
-cout << "3)Machine.\n";
-cout << "4)Back.\n";
-cin >> Select ;  
+	int Select ;
+	while (true)
+	{	
+		cout << "1)Member.\n";
+		cout << "2)Coach.\n";
+		cout << "3)Machine.\n";
+		cout << "4)Back.\n";
+		cin >> Select;
+		if (ValidInput(Select) && Select >= 1 && Select <= 4)
+			break;
+	}
+	system ("CLS");
+	switch (Select)
+	{
+	case 1 :
+		Insert_Member();
+		break;
+	case 2 :
+		Insert_Coach();
+		break;
+	case 3 :
+		Insert_Machine();
+		break;
+	case 4 :
+		break;
+	}
 }
-
-system("clear");
-switch (Select)
+void SPACE (int S,int MAX)
 {
-case 1 :
-    Insert_Member();
-    break;
-case 2 :
-    Insert_Coach();
-    break;
-case 3 :
-    Insert_Machine();
-    break;
-case 4 :
-    break;
+	for (int i =S ; i < MAX ; i++)
+		cout << ' ';
 }
-
- }
-
 ///  Insert START
 
 ///# Insert Member START
-void SPACE (int S,int MAX)
-{
-    for (int i =S ; i < MAX ; i++)
-        cout << ' ';
-}
+
 
 void Functions::Insert_Member ()
 {
 
-    Member M ;
-    M.SetId ();
-    M.SetData();
-    fstream Mem ;
-    Info Tem ;
-    Tem = M.GetInfo();
-    Mem.open("Data/Members.txt", ios::app );
+	Member M ;
+	M.SetId();
+	M.SetData();
+	fstream Mem ;
+	Info Tem;
+	Tem = M.GetInfo();
+	Mem.open("Data/Members.txt", ios::app );
 
-    Mem << M.GetId() << "#" << M.GetName() << "#" << M.GetAge() << "#" << Tem.Hight << "#"
-        << Tem.Wight << "#" <<M.GetProgram() << "#" << M.GetSubscription() << '#' <<M.GetPhone() << "\n";
-    Mem.close() ;
-
-
+	Mem << M.GetId() << "#" << M.GetName() << "#" << M.GetAge() << "#" << Tem.Hight << "#"
+			<< Tem.Wight << "#" <<M.GetProgram() << "#" << M.GetSubscription() << '#' <<M.GetPhone() << "\n";
+	Mem.close() ;
 }
 ///# Insert Member END
 
@@ -132,37 +122,32 @@ void Functions::Delete()
 {
 
 int Select ;
-cout << "1)Member.\n";
-cout << "2)Coach.\n";
-cout << "3)Machine.\n";
-cout << "4)Back.\n";
-cin >> Select ;
 /// Validation
-while (!ValidInput(Select) || (Select < 1 || Select > 4) )
+while (true)
 {	
-cout << "1)Member.\n";
-cout << "2)Coach.\n";
-cout << "3)Machine.\n";
-cout << "4)Back.\n";
-cin >> Select ;  
+	cout << "1)Member.\n";
+	cout << "2)Coach.\n";
+	cout << "3)Machine.\n";
+	cout << "4)Back.\n";
+	cin >> Select;
+	if (ValidInput(Select) && Select >= 1 && Select <= 4)
+		break;
 }
-system("clear");
-switch (Select)
-{
-case 1 :
-    Delete_Member();
-    break;
-case 2 :
-    Delete_Coach();
-    break;
-case 3 :
-    Delete_Machine();
-    break;
-case 4 :
-    break ;
-}
-
-
+	system ("CLS");
+	switch (Select)
+	{
+	case 1 :
+		Delete_Member();
+		break;
+	case 2 :
+		Delete_Coach();
+		break;
+	case 3 :
+		Delete_Machine();
+		break;
+	case 4 :
+		break;
+	}
 }
 ///  Delete START
 
@@ -173,14 +158,14 @@ void Functions::Delete_Member()
     bool Exisit =0  ;
     int Id ;
     Display_Mamber();
-    cout << "Enter Id You Want To Delete \n";
-    cin >> Id ;
 	/// Validation
-    while (!ValidInput(Id) || Id <= 0)
+    while (true)
     {
 		cout << "Enter Id You Want To Delete \n";
 		cin >> Id ;
-	}
+		if (ValidInput(Id) && Id > 0)
+			break;
+		}
     fstream M ;
     string T ;
     M.open("Data/Members.txt", ios::in );
@@ -195,15 +180,13 @@ void Functions::Delete_Member()
             break ;
         }
         getline(M,T,'\n');
-
-
     }
     M.close() ;
     if (!Exisit)
     {
-		system("clear");
-        cout << "Not Exist \n";
-        return ;
+			system ("CLS");
+      cout << "Not Exist \n";
+      return ;
     }
     fstream M1 ;
 
@@ -211,32 +194,31 @@ void Functions::Delete_Member()
     M1.open("Data/Members1.txt", ios::out );
     while(1)
     {
-        getline(M,T,'#');
-        if (M.eof())
-            break ;
-        if ( Id == GetInt(T))
-        {
-            getline(M,T,'\n');
-            continue ;
-        }
+			getline(M,T,'#');
+			if (M.eof())
+					break ;
+			if ( Id == GetInt(T))
+			{
+					getline(M,T,'\n');
+					continue ;
+			}
 
-        M1 << T << '#' ;
+			M1 << T << '#' ;
 
-        getline(M,T,'#');
-        M1 << T << '#' ;
-        getline(M,T,'#');
-        M1 << T << '#' ;
-        getline(M,T,'#');
-        M1 << T << '#' ;
-        getline(M,T,'\n');
-        M1 << T << '\n' ;
-
+			getline(M,T,'#');
+			M1 << T << '#' ;
+			getline(M,T,'#');
+			M1 << T << '#' ;
+			getline(M,T,'#');
+			M1 << T << '#' ;
+			getline(M,T,'\n');
+			M1 << T << '\n' ;
     }
     M.close();
     M1.close();
     remove("Data/Members.txt");
     rename("Data/Members1.txt", "Data/Members.txt");
-    system("clear"); 
+    system ("CLS"); 
     cout << "Done\n";
 
 
@@ -330,9 +312,9 @@ void Functions::Delete_Machine()
     Display_Machines();
     cout << "Enter Id You Want To Delete \n";
     cin >> Id ;
-    system("clear");
+    system ("CLS");
 	/// Validation
-	system("clear"); 
+	system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -423,7 +405,7 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;  
 }
-system("clear");
+system ("CLS");
 switch (Select)
 {
 case 1 :
@@ -449,7 +431,7 @@ void Functions::Update_Member ()
     Display_Mamber();
     cout << "Enter Id To Update \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -539,7 +521,7 @@ void Functions::Update_Coach()
     Display_Coaches(); 
     cout << "Enter Id To Update \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -628,7 +610,7 @@ void  Functions::Update_Machine()
 	Display_Machines(); 
     cout << "Enter Id To Update \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -729,7 +711,7 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;  
 }
-system("clear");
+system ("CLS");
 switch (Select)
 {
 case 1 :
@@ -747,7 +729,7 @@ case 4 :
 }
 void Functions::Search_Members()
 {
-system("clear");
+system ("CLS");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -789,7 +771,7 @@ case 5 :
 }
 void Functions::Search_Coaches()
 {
-system("clear");
+system ("CLS");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -826,7 +808,7 @@ case 4 :
 }
 void Functions::Search_Machines()
 {
-system("clear");
+system ("CLS");
 int Select ;
 cout << "Search By : \n";
 cout << "1)Id. \n";
@@ -864,7 +846,7 @@ void Functions::Search_Member_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -1147,7 +1129,7 @@ void Functions::Search_Coach_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -1340,7 +1322,7 @@ void Functions::Search_Machine_Id ()
     int Id ;
     cout << "Enter Id You Search For \n";
     cin >> Id ;
-    system("clear"); 
+    system ("CLS"); 
 	while (!ValidInput(Id) || Id <= 0)
     {
 		cout << "Enter Id You Want To Delete \n";
@@ -1448,7 +1430,7 @@ cout << "3)Machine.\n";
 cout << "4)Back.\n";
 cin >> Select ;  
 }
-system("clear");
+system ("CLS");
 switch (Select)
 {
 case 1 :
